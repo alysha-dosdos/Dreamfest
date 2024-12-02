@@ -45,7 +45,7 @@ export default function EditLocationForm({ id, name, description }: Props) {
         value={formState.name}
         onChange={handleChange}
       />
-      <div>Description</div>
+      <div id="desc">Description</div>
       <label>
         <textarea
           rows={4}
