@@ -8,9 +8,9 @@ const router = express.Router()
 router.get('/', async (req, res, next) => {
   try {
     // TODO: Replace this with all of the locations in the database
-    await db.getAllLocations()
+    const locations = await db.getAllLocations()
 
-    res.json({ location })
+    res.json({ locations })
   } catch (e) {
     next(e)
   }
@@ -20,12 +20,7 @@ router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
     // TODO: Get the location based on its id and replace this viewData
-    const location = {
-      id: id,
-      name: 'TangleStage',
-      description:
-        'Not the biggest stage, but perhaps the most hip. Not the biggest stage, but perhaps the most hip. Not the biggest stage, but perhaps the most hip.',
-    }
+    await db.getLocationById(Number(id))
     res.json(location)
   } catch (e) {
     next(e)

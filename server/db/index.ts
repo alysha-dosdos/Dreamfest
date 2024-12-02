@@ -31,3 +31,12 @@ export async function getEventsByDay(
     .where('events.day', day)
   return events as EventWithLocation[]
 }
+
+export async function getLocationById(id: number): Promise<Location[]> {
+  const db = connection
+  const location = await db('locations')
+    .select('id', 'name', 'description')
+    .where('id', id)
+  console.log(location)
+  return location as Location[]
+}
