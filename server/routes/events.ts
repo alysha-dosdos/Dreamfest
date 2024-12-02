@@ -11,7 +11,13 @@ router.post('/', async (req, res, next) => {
   try {
     const { name, description, time, locationId } = req.body
     const day = validateDay(req.body.day)
-    const id = 0 // TODO: call your new db.addNewEvent function and use the returned ID
+    const id = await db.addNewEvent({
+      locationId,
+      name,
+      description,
+      day,
+      time,
+    })
     const url = `/api/v1/events/${id}`
     res.setHeader('Location', url)
     res.status(201).json({ location: url })

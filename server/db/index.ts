@@ -47,3 +47,16 @@ export async function updateLocation(updatedLocation: Location): Promise<void> {
   const { id, name, description } = updatedLocation
   return await db('locations').where({ id }).update({ name, description })
 }
+
+export async function addNewEvent(event: EventData): Promise<EventData> {
+  const db = connection
+  const { locationId, day, time, name, description } = event
+  const newEvent = {
+    location_id: locationId,
+    name,
+    description,
+    day,
+    time,
+  }
+  return await db('events').insert(newEvent)
+}
