@@ -60,3 +60,8 @@ export async function addNewEvent(event: EventData): Promise<EventData> {
   }
   return await db('events').insert(newEvent)
 }
+
+export async function deleteEvent(id: number): Promise<void> {
+  const db = connection
+  await db('events').where({ id }).del()
+}
