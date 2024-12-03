@@ -65,3 +65,13 @@ export async function deleteEvent(id: number): Promise<void> {
   const db = connection
   await db('events').where({ id }).del()
 }
+
+export async function getEventById(id: number): Promise<Event> {
+  const db = connection
+  const events = await db('events')
+    .select('id', 'name', 'description')
+    .where('id', id)
+    .first()
+
+  return events as Event
+}
