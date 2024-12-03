@@ -17,7 +17,21 @@ afterAll(async () => {
 })
 
 describe('Deleting an Event', () => {
-  it.todo('can be deleted', async () => {
-    // TODO: write server integration test for event delete
+  it('can be deleted', async () => {
+    // TODO: write server integration test for event delete (testing the routes and db at the same time)
+    // make a fake variable so it doesn't actually delete a real one in the DB
+    const fakeEventID = 6
+
+    // to find event and show its there
+    let response = await request(server).get(`/api/v1/events/${fakeEventID}`)
+    expect(response.status).toBe(200)
+
+    // to delete event
+    response = await request(server).delete(`/api/v1/events/${fakeEventID}`)
+    expect(response.status).toBe(204)
+
+    // to find event and it's gone to make sure it's deleted successfully
+    response = await request(server).get(`/api/v1/events/${fakeEventID}`)
+    expect(response.status).toBe(404)
   })
 })

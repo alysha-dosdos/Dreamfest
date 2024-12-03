@@ -45,16 +45,14 @@ export default function EditLocationForm({ id, name, description }: Props) {
         value={formState.name}
         onChange={handleChange}
       />
-      <div id="desc">Description</div>
-      <label>
-        <textarea
-          rows={4}
-          name="description"
-          placeholder="Location description"
-          onChange={handleChange}
-          value={formState.description}
-        />
-      </label>
+      <label htmlFor="description">Description</label>
+      <textarea
+        rows={4}
+        name="description"
+        placeholder="Location description"
+        onChange={handleChange}
+        value={formState.description}
+      />
       <div></div>
       <button disabled={updateLocation.isPending}>Update location</button>{' '}
       <div></div>

@@ -11,7 +11,7 @@ import userEvent from '@testing-library/user-event'
 beforeEach(cleanup)
 expect.extend(matchers)
 
-export function setupApp(route = '/') {
+export function setupApp(route = '/events/1/edit') {
   const router = createMemoryRouter(routes, {
     initialEntries: [route],
   })
@@ -29,7 +29,7 @@ export function setupApp(route = '/') {
   const screen = render(
     <QueryClientProvider client={client}>
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </QueryClientProvider>,
   )
 
   const user = userEvent.setup()
