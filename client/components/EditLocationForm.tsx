@@ -47,6 +47,7 @@ export default function EditLocationForm({ id, name, description }: Props) {
       />
       <label htmlFor="description">Description</label>
       <textarea
+        id="description"
         rows={4}
         name="description"
         placeholder="Location description"

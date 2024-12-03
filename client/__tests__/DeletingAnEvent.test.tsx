@@ -63,16 +63,14 @@ describe('Deleting an event', () => {
     const eventScope = nock('http://localhost')
       .get('/api/v1/events/1')
       .reply(200, fakeEvent)
-    expect(eventScope.isDone()).toBe(true)
 
     const locationScope = nock('http://localhost')
       .get('/api/v1/locations')
       .reply(200, fakeLocations)
-    expect(locationScope.isDone()).toBe(true)
 
     // render the front end route and see if the event is there
     const { user, ...screen } = setupApp('/events/1/edit')
-    const deleteButton = await screen.findByLabelText('Delete event')
+    const deleteButton = await screen.findByText('Delete event')
     expect(deleteButton).toBeVisible()
 
     // to make sure it doesn't delete in the db for real
@@ -87,5 +85,7 @@ describe('Deleting an event', () => {
     // ASSERT
     // to show it's working as it should in the front end to delete event
     expect(deleteEventScope.isDone()).toBe(true)
+    expect(eventScope.isDone()).toBe(true)
+    expect(locationScope.isDone()).toBe(true)
   })
 })
